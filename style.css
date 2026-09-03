@@ -189,6 +189,10 @@ p {
   margin-bottom: 0.9rem;
 }
 
+.tool__icon--round {
+  border-radius: 50%;
+}
+
 .tool--agent {
   border-color: var(--amber);
 }
