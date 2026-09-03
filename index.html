@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mattia Giovannini's homelab — self-hosted infrastructure, observability and edge security, and a testbed for giving agentic AI tools scoped access to real infrastructure." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Homelab — Mattia Giovannini</title>
+</head>
+<body>
+  <main>
+    <div class="wrap">
+      <div class="chrome">
+        <span class="dot dot--amber"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="chrome__title">mattia@bologna: ~/homelab</span>
+      </div>
+
+      <nav class="tabs">
+        <a href="#stack" class="tab is-current">stack.json</a>
+        <a href="#agentic" class="tab">agentic-ai.md</a>
+        <a href="#about" class="tab">about.md</a>
+      </nav>
+
+      <div class="panel">
+        <section class="hero">
+          <p class="prompt"><span class="amber">mattia@bologna</span>:~/homelab$ cat README.md</p>
+          <h1><span class="amber">#</span> Infrastructure I actually run, at home.</h1>
+          <p class="lede">
+            A small self-hosted lab — containers, observability, edge security — that doubles as a testbed for a different question: what does it take to give an agentic AI safe, scoped access to infrastructure that actually matters?
+          </p>
+        </section>
+
+        <section id="stack" class="section">
+          <p class="label"><span class="amber">$</span> cat stack.json</p>
+          <div class="stack-grid">
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="13" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="13" y="5" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <h3>Docker</h3>
+              <p>Day-to-day container runtime for internal services that don't need rootless isolation.</p>
+            </article>
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="7" y="10" width="14" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="14" cy="5" r="2" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <h3>Podman</h3>
+              <p>Rootless, daemonless containers for anything internet-facing — smaller attack surface by default.</p>
+            </article>
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="16,4 26,10 26,22 16,28 6,22 6,10" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="16" cy="16" r="3" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <h3>Kubernetes</h3>
+              <p>Orchestration layer for services that need scheduling and self-healing across nodes.</p>
+            </article>
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4c-4 6-8 9-8 15a8 8 0 0 0 16 0c0-3-2-5-3-7 0 3-2 4-3 2-1-3 1-6-2-10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <h3>Prometheus</h3>
+              <p>Scrapes metrics from every service in the lab — the source of truth when something looks off.</p>
+            </article>
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 24V14M13 24V8M20 24V17M27 24V11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <h3>Grafana</h3>
+              <p>Dashboards for what Prometheus collects. Usually the first tab I open when something feels slow.</p>
+            </article>
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4l10 4v8c0 7-5 11-10 12-5-1-10-5-10-12v-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M12 16l3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <h3>CrowdSec</h3>
+              <p>Collaborative IP reputation and local behaviour detection, enforced through a custom ARM bouncer I maintain for the Raspberry Pi nodes.</p>
+            </article>
+
+            <article class="tool">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 10h10l-3-3M15 10l-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M27 22H17l3 3M17 22l3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <h3>Nginx Proxy Manager</h3>
+              <p>Reverse proxy and TLS termination in front of everything that's actually exposed.</p>
+            </article>
+
+            <article class="tool tool--agent">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="24" r="2.4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="24" cy="24" r="2.4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="16" cy="8" r="2.4" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 24l8-16 8 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <h3>Hermes Agent</h3>
+              <p>Nous Research's open-source agent platform. Scoped, read-only access to service status and logs — not free rein.</p>
+            </article>
+
+            <article class="tool tool--agent">
+              <svg class="tool__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 10l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 22h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <h3>Claude Code</h3>
+              <p>What I actually use for the infra work — writing Podman Quadlet units, debugging the proxy, building this page.</p>
+            </article>
+
+          </div>
+        </section>
+
+        <section id="agentic" class="section">
+          <p class="label"><span class="amber">$</span> cat agentic-ai.md</p>
+          <div class="prose">
+            <p>
+              The lab exists to answer a practical question, not a hypothetical one: what does it take to give an AI agent safe, scoped access to infrastructure that actually matters? Read-only where it should be, sandboxed where it needs to act, and always something a human can audit afterwards.
+            </p>
+            <p>
+              Hermes Agent gets a narrow diagnostic view — it can ask how a service is doing, not restart it. Claude Code, by contrast, does real work here under my direct supervision: writing the Podman Quadlet units, debugging the reverse proxy, shipping this page. The line between the two is deliberate.
+            </p>
+          </div>
+        </section>
+
+        <section id="about" class="section">
+          <p class="label"><span class="amber">$</span> cat about.md</p>
+          <p class="prose__single">
+            Everything here runs on Raspberry Pi nodes and a couple of always-on machines at home. It's small on purpose — big enough to be useful, small enough that I still understand every piece of it.
+          </p>
+        </section>
+
+        <footer class="footer">
+          <span>© <span id="year"></span> Mattia Giovannini</span>
+          <a href="https://mattia-giovannini.github.io" target="_blank" rel="noreferrer">Portfolio ↗</a>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
