@@ -1,6 +1,6 @@
 # homelab
 
-Static page describing Mattia Giovannini's self-hosted homelab — the stack it runs (containers, observability, edge security) and how agentic AI tools (Hermes Agent, Claude Code) get scoped access to it.
+Static page describing Mattia Giovannini's self-hosted homelab — the stack it runs (GitOps-managed k3s, runtime security, observability) and how agentic AI tools (Claude Code) get scoped access to it.
 
 No build step: plain HTML/CSS, served as-is.
 
